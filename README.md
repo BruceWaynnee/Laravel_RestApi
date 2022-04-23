@@ -15,7 +15,7 @@ Laravel 8 RESTful_API with Sanctum API authentication.
 - open your project and enjoy it, since this is about RestFul API, make sure to use any api testing app for example: PostMan, Katalon Studio, Eggplant ...
 
 # Packages That This Project Used
-### Working With Sanctumn API Authentication
+### Working With Sanctum API Authentication
 - Package name ``` Laravel Sanctum ```
 - Open your composer and execute following command to install the package
     -> ``` composer require laravel/sanctum ```
