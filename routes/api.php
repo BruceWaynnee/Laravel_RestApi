@@ -24,6 +24,7 @@ Route::group([
         Route::get('/', 'ProductController@index')->name('product-list');
         Route::post('/', 'ProductController@store')->name('product-create');
         Route::get('/{id}', 'ProductController@show')->name('product-show');
+        Route::get('/search/{field}/{value}', 'ProductController@search')->name('product-search');
         Route::patch('/{id}/edit', 'ProductController@update')->name('product-update');
         Route::delete('/{id}', 'ProductController@destroy')->name('product-delete');
     });

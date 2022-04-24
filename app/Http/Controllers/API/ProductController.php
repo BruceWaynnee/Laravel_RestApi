@@ -19,7 +19,7 @@ class ProductController extends Controller
         // get product records from database.
         $products = Product::getProducts();
         if( !$products->data ){
-            return response()->json($products, 404);
+            return response()->json($products->message, 404);
         }
         $products = $products->data;
 
@@ -77,7 +77,25 @@ class ProductController extends Controller
         // get product record
         $product = Product::getProduct($id);
         if( !$product->data ){
-            return response()->json($product, 404);
+            return response()->json($product->message, 404);
+        }
+        $product = $product->data;
+
+        return $product; 
+    }
+
+    /**
+     * Display the specified resource based on given field and value.
+     * @param  string $field
+     * @param  string $value
+     * @return \Illuminate\Http\Response
+     */
+    public function search($field, $value)
+    {
+        // search product by given field and value
+        $product = Product::scopeLike($field, $value);
+        if( !$product->data ) {
+            return response()->json($product->message, 404);
         }
         $product = $product->data;
 
@@ -95,7 +113,7 @@ class ProductController extends Controller
         // get product record
         $product = Product::getProduct($id);
         if( !$product->data ){
-            return response()->json($product, 404);
+            return response()->json($product->message, 404);
         }
         $product = $product->data;
 
@@ -130,7 +148,7 @@ class ProductController extends Controller
         // get product record
         $product = Product::getProduct($id);
         if( !$product->data ){
-            return response()->json($product, 404);
+            return response()->json($product->message, 404);
         }
         $product = $product->data;
 

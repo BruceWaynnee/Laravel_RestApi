@@ -30,9 +30,11 @@ class Product extends Model
 
     ];
 
-    /**==============================
+    /**
+     * ##############################
      *    Module Helper Functions
-     *===============================*/
+     * ##############################
+     */
         
         // Product Helper Functions [BEGIN]
             /**
@@ -75,8 +77,43 @@ class Product extends Model
             }
 
             /**
+             * Scope like custom query function, query product based 
+             * on given field and field value.
+             * @param String $field
+             * @param String $value 
+             * @return ObjectRespond [ data: data_result, message: result_message ]
+             */
+            public static function scopeLike( $field, $value ){
+                $respond = (object)[];
+                $field = strtolower($field);
+
+                try {
+                    $product = Product::where($field, 'LIKE', '%'.$value.'%')->get();
+                    $respond->data = $product;
+                    $respond->message = 'Sucessful getting product record by '.$field;
+                } catch( ModelNotFoundException | Exception $ex ) {
+                    $respond->data    = false;
+                    $respond->message = 'Problem occured while trying to search product by '.$field.', please try again!';
+                }
+
+                return $respond;
+            }
+
+            /**
              * 
              */
         // Product Helper Functions [END] 
+        
+        // Helper Functions [BEGIN]
+            /**
+             * 
+             */
+        // Helper Functions [BEGIN]
+
+    /**
+     * ##############################
+     *    Module Helper Functions
+     * ##############################
+     */
 
 }
