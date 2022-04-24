@@ -27,10 +27,11 @@ Laravel 8 RESTful_API with Sanctum API authentication.
 #### Date( Saturaday, April/23rd/2022 )
 
 Product API
-| To              | Method        | URL  								        |
-| --------------- |:-------------:| -------------------------------------------:|
-| List Products   | ```GET```     | http://localhost:8000/api/products   		|
-| Add Products    | ```POST```    | http://localhost:8000/api/products   		|
-| Show Products   | ```GET```     | http://localhost:8000/api/products/1        |
-| Edit Products   | ```PATCH```   | http://localhost:8000/api/products/1/edit   |
-| Delete Products | ```DELETE```  | http://localhost:8000/api/products/1        |
+| To              | Method        | URL  								                       |
+| --------------- |:-------------:| ----------------------------------------------------------:|
+| List Products   | ```GET```     | http://localhost:8000/api/products   		               |
+| Add Product     | ```POST```    | http://localhost:8000/api/products   		               |
+| Show Product    | ```GET```     | http://localhost:8000/api/products/1                       |
+| Search Product  | ```GET```     | http://localhost:8000/api/{field}/{value} ex name/iphone   |
+| Edit Product    | ```PATCH```   | http://localhost:8000/api/products/1/edit                  |
+| Delete Product  | ```DELETE```  | http://localhost:8000/api/products/1                       |
