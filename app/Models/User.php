@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Exception;
 use Laravel\Sanctum\HasApiTokens;
+
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -41,4 +43,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * ##############################
+     *    Module Helper Functions
+     * ##############################
+     */
+
+        // User Helper Functions [BEGIN]
+            /**
+             * Get user record by given email parameter from database.
+             * @param String $email
+             * @return Respond [ data: data_restul, message: result_message ]
+             */
+            public static function getUserByEmail( $email ){
+                $respond = (object)[];
+                $email = strtolower( $email );
+
+                try {
+                    $user = User::where('email', $email)->first();
+                    $respond->data    = $user;
+                    $respond->message = 'User record found';
+                } catch( ModelNotFoundException | Exception $ex ) {
+                    $respond->data = false;
+                    $respond->message = 'Given user email does not match any record on our database!';
+                }
+
+                return $respond;
+            }
+        // User Helper Functions [BEGIN]
+
 }

@@ -26,6 +26,14 @@ Laravel 8 RESTful_API with Sanctum API authentication.
 # Testing The API
 #### Date( Saturaday, April/23rd/2022 )
 
+User API
+| To              | Method        | URL  								  |
+| --------------- |:-------------:| -------------------------------------:|
+| Register User   | ```POST```    | http://localhost:8000/users/register  |
+| Login           | ```POST```    | http://localhost:8000/users/login     |
+| logout          | ```POST```    | http://localhost:8000/users/logout    |
+|                 |               |                                       |
+
 Product API
 | To              | Method        | URL  								                       |
 | --------------- |:-------------:| ----------------------------------------------------------:|
@@ -35,3 +43,5 @@ Product API
 | Search Product  | ```GET```     | http://localhost:8000/api/{field}/{value} ex name/iphone   |
 | Edit Product    | ```PATCH```   | http://localhost:8000/api/products/1/edit                  |
 | Delete Product  | ```DELETE```  | http://localhost:8000/api/products/1                       |
+|                 |               |                                                            |
+

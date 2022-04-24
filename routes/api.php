@@ -14,20 +14,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Authentication Routes
+Route::group([
+    'prefix' => 'users',
+], function(){
+    Route::post('/register', 'AuthController@register')->name('user-register');
+    Route::post('/login', 'AuthController@login')->name('login');
+    Route::post('/logout', 'AuthController@logout')->name('logout')->middleware('auth:sanctum');
+});
+
+// API Routers
 Route::group([
     'namespace' => 'API',
 ], function(){
+
     // product api routes
     Route::group([
         'prefix' => 'products',
     ], function(){
         Route::get('/', 'ProductController@index')->name('product-list');
-        Route::post('/', 'ProductController@store')->name('product-create');
+        Route::post('/', 'ProductController@store')->name('product-create')->middleware('auth:sanctum');
         Route::get('/{id}', 'ProductController@show')->name('product-show');
         Route::get('/search/{field}/{value}', 'ProductController@search')->name('product-search');
-        Route::patch('/{id}/edit', 'ProductController@update')->name('product-update');
-        Route::delete('/{id}', 'ProductController@destroy')->name('product-delete');
+        Route::patch('/{id}/edit', 'ProductController@update')->name('product-update')->middleware('auth:sanctum');
+        Route::delete('/{id}', 'ProductController@destroy')->name('product-delete')->middleware('auth:sanctum');
     });
+
+    // ... api routes
     
 });
 
