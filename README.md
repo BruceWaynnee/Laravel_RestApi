@@ -34,6 +34,17 @@ User API
 | logout          | ```POST```    | http://localhost:8000/users/logout    |
 |                 |               |                                       |
 
+Category API
+| To              | Method        | URL  								                       |
+| --------------- |:-------------:| ----------------------------------------------------------:|
+| List Categories | ```GET```     | http://localhost:8000/api/categories   		               |
+| Add Category    | ```POST```    | http://localhost:8000/api/categories   		               |
+| Show Category   | ```GET```     | http://localhost:8000/api/categories/1                     |
+| Search Category | ```GET```     | http://localhost:8000/api/{field}/{value} ex name/drinks   |
+| Edit Category   | ```PATCH```   | http://localhost:8000/api/categories/1/edit                |
+| Delete Category | ```DELETE```  | http://localhost:8000/api/categories/1                     |
+|                 |               |                                                            |
+
 Product API
 | To              | Method        | URL  								                       |
 | --------------- |:-------------:| ----------------------------------------------------------:|
