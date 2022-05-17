@@ -40,10 +40,17 @@ Route::group([
         Route::delete('/{id}', 'ProductController@destroy')->name('product-delete')->middleware('auth:sanctum');
     });
 
-    // ... api routes
-    
-});
+    // category api routes
+    Route::group([
+        'prefix' => 'categories',
+    ], function(){
+        Route::get('/', 'CategoryController@index')->name('category-list');
+        Route::post('/', 'CategoryController@store')->name('category-create')->middleware('auth:sanctum');
+        Route::get('/{id}', 'CategoryController@show')->name('category-show');
+        Route::get('search/{field}/{value}', 'CategoryController@search')->name('category-search');
+        Route::patch('/{id}/edit', 'CategoryController@update')->name('category-update')->middleware('auth:sanctum');
+        Route::delete('/{id}', 'CategoryController@destroy')->name('category-delete')->middleware('auth:sanctum');
+    });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    // ... api routes
 });
