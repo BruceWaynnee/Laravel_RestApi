@@ -26,6 +26,7 @@ class Product extends Model
         'name',
         'barcode',
         'cost',
+        'category_id',
         'country_of_origin',
 
     ];
@@ -103,6 +104,29 @@ class Product extends Model
              * 
              */
         // Product Helper Functions [END] 
+
+        // Category Helper Functions [BEGIN]
+            /**
+             * Get specifi category record based on given 
+             * parameter id from database.
+             * @param Integer $id
+             * @return ObjectRespond [data: data_result, message: result_message ]
+             */
+            public static function getCategory( $id ){
+                $respond = (object)[];
+
+                try {
+                    $category = Category::findOrFail($id);
+                    $respond->data    = $category;
+                    $respond->message = 'Category record found';
+                } catch(ModelNotFoundException $ex) {
+                    $respond->data    = false;
+                    $respond->message = 'Category record not found!';
+                }
+
+                return $respond;
+            }
+        // Category Helper Functions [BEGIN]
         
         // Helper Functions [BEGIN]
             /**

@@ -119,11 +119,8 @@ class CategoryController extends Controller
         // update record
         try {
             DB::beginTransaction();
-
-            $category->name        = $request['name'];
-            $category->description = $request['description'];
-            $category->save();
-
+            $category->update( $request->all() );
+            
         } catch(QueryException $queryEx) {
             DB::rollBack();
             $queryEx->errorInfo[1] == 1062 ?

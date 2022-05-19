@@ -27,32 +27,79 @@ Laravel 8 RESTful_API with Sanctum API authentication.
 #### Date( Saturaday, April/23rd/2022 )
 
 User API
-| To              | Method        | URL  								  |
-| --------------- |:-------------:| -------------------------------------:|
-| Register User   | ```POST```    | http://localhost:8000/users/register  |
-| Login           | ```POST```    | http://localhost:8000/users/login     |
-| logout          | ```POST```    | http://localhost:8000/users/logout    |
-|                 |               |                                       |
+| To              | Method        | URL  						   	          |
+| --------------- |:-------------:| -----------------------------------------:|
+| Register User   | ```POST```    | http://localhost:8000/api/users/register  |
+| Login           | ```POST```    | http://localhost:8000/api/users/login     |
+| logout          | ```POST```    | http://localhost:8000/api/users/logout    |
+|                 |               |                                           |
+###### Mentadory Request Variable Name To:
+Register User
+ - ```name```
+ - ```email```
+ - ```password```
+ - ```password_confirmation```
+
+Login
+ - ```email```
+ - ```password```
+
+Logout
+ - ```You need to send it with your Token Api in order to log the user out!```
+---
 
 Category API
-| To              | Method        | URL  								                       |
-| --------------- |:-------------:| ----------------------------------------------------------:|
-| List Categories | ```GET```     | http://localhost:8000/api/categories   		               |
-| Add Category    | ```POST```    | http://localhost:8000/api/categories   		               |
-| Show Category   | ```GET```     | http://localhost:8000/api/categories/1                     |
+| To              | Method        | URL  								                              |
+| --------------- |:-------------:| -----------------------------------------------------------------:|
+| List Categories | ```GET```     | http://localhost:8000/api/categories   		                      |
+| Add Category    | ```POST```    | http://localhost:8000/api/categories   		                      |
+| Show Category   | ```GET```     | http://localhost:8000/api/categories/1                            |
 | Search Category | ```GET```     | http://localhost:8000/api/search/{field}/{value} ex name/drinks   |
-| Edit Category   | ```PATCH```   | http://localhost:8000/api/categories/1/edit                |
-| Delete Category | ```DELETE```  | http://localhost:8000/api/categories/1                     |
-|                 |               |                                                            |
+| Edit Category   | ```PATCH```   | http://localhost:8000/api/categories/1/edit                       |
+| Delete Category | ```DELETE```  | http://localhost:8000/api/categories/1                            |
+|                 |               |                                                                   |
+###### Mentadory Request Variable Name To:
+Add Category
+ - ```name```
+ - ```description```
+ - ```You need to send it with your Token Api in order to process this action!```
+
+Edit Category
+ - ```name```
+ - ```description```
+ - ```You need to send it with your Token Api in order to process this action!```
+
+Delete Category
+ - ```You need to send it with your Token Api in order to process this action!```
+---
 
 Product API
-| To              | Method        | URL  								                       |
-| --------------- |:-------------:| ----------------------------------------------------------:|
-| List Products   | ```GET```     | http://localhost:8000/api/products   		               |
-| Add Product     | ```POST```    | http://localhost:8000/api/products   		               |
-| Show Product    | ```GET```     | http://localhost:8000/api/products/1                       |
+| To              | Method        | URL  								                              |
+| --------------- |:-------------:| -----------------------------------------------------------------:|
+| List Products   | ```GET```     | http://localhost:8000/api/products   		                      |
+| Add Product     | ```POST```    | http://localhost:8000/api/products   		                      |
+| Show Product    | ```GET```     | http://localhost:8000/api/products/1                              |
 | Search Product  | ```GET```     | http://localhost:8000/api/search/{field}/{value} ex name/iphone   |
-| Edit Product    | ```PATCH```   | http://localhost:8000/api/products/1/edit                  |
-| Delete Product  | ```DELETE```  | http://localhost:8000/api/products/1                       |
-|                 |               |                                                            |
+| Edit Product    | ```PATCH```   | http://localhost:8000/api/products/1/edit                         |
+| Delete Product  | ```DELETE```  | http://localhost:8000/api/products/1                              |
+|                 |               |                                                                   |
+###### Mentadory Request Variable Name To:
+Add Product
+ - ```name```
+ - ```cost```
+ - ```barcode```
+ - ```category_id```
+ - ```country_of_origin```
+ - ```You need to send it with your Token Api in order to process this action!```
 
+Edit Category
+ - ```name```
+ - ```cost```
+ - ```barcode```
+ - ```category_id```
+ - ```country_of_origin```
+ - ```You need to send it with your Token Api in order to process this action!```
+
+Delete Category
+ - ```You need to send it with your Token Api in order to process this action!```
+---

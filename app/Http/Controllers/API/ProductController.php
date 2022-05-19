@@ -35,10 +35,17 @@ class ProductController extends Controller
     {
         // validate all mandatory request data
         $request->validate([
-            'name'            => 'required|max:255',
-            'cost'            => 'required|numeric',
-            'countryOfOrigin' => 'required|max:50',
+            'name'              => 'required|max:255',
+            'cost'              => 'required|numeric',
+            'country_of_origin' => 'required|max:50',
         ]);
+
+        // get category record
+        $category = Product::getCategory($request['category_id']);
+        if( !$category->data ){
+            return response()->json($category->message, 404);
+        }
+        $category = $category->data;
 
         // create product record
         try {
@@ -48,7 +55,8 @@ class ProductController extends Controller
                 'name'              => $request['name'],
                 'barcode'           => $request['barcode'],
                 'cost'              => $request['cost'],
-                'country_of_origin' => $request['countryOfOrigin'],
+                'category_id'       => $category->id,
+                'country_of_origin' => $request['country_of_origin'],
             ]);
             $product->save();
 
@@ -117,9 +125,20 @@ class ProductController extends Controller
         }
         $product = $product->data;
 
+        // get category id
+        $category = Product::getCategory($request['category_id']);
+        if( !$category->data ){
+            return response()->json($category->message, 404);
+        }
+        $category = $category->id;
+        
         // update product record
         try {
             DB::beginTransaction();
+            
+            // update category id
+            $product->category_id = $category->id;
+            // update product record
             $product->update( $request->all() );
 
         } catch( QueryException $ex ) {
