@@ -40,7 +40,7 @@ Category API
 | List Categories | ```GET```     | http://localhost:8000/api/categories   		               |
 | Add Category    | ```POST```    | http://localhost:8000/api/categories   		               |
 | Show Category   | ```GET```     | http://localhost:8000/api/categories/1                     |
-| Search Category | ```GET```     | http://localhost:8000/api/{field}/{value} ex name/drinks   |
+| Search Category | ```GET```     | http://localhost:8000/api/search/{field}/{value} ex name/drinks   |
 | Edit Category   | ```PATCH```   | http://localhost:8000/api/categories/1/edit                |
 | Delete Category | ```DELETE```  | http://localhost:8000/api/categories/1                     |
 |                 |               |                                                            |
@@ -51,7 +51,7 @@ Product API
 | List Products   | ```GET```     | http://localhost:8000/api/products   		               |
 | Add Product     | ```POST```    | http://localhost:8000/api/products   		               |
 | Show Product    | ```GET```     | http://localhost:8000/api/products/1                       |
-| Search Product  | ```GET```     | http://localhost:8000/api/{field}/{value} ex name/iphone   |
+| Search Product  | ```GET```     | http://localhost:8000/api/search/{field}/{value} ex name/iphone   |
 | Edit Product    | ```PATCH```   | http://localhost:8000/api/products/1/edit                  |
 | Delete Product  | ```DELETE```  | http://localhost:8000/api/products/1                       |
 |                 |               |                                                            |
