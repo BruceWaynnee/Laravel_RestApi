@@ -92,7 +92,7 @@ Add Product
  - ```country_of_origin```
  - ```You need to send it with your Token Api in order to process this action!```
 
-Edit Category
+Edit Product
  - ```name```
  - ```cost```
  - ```barcode```
@@ -100,6 +100,6 @@ Edit Category
  - ```country_of_origin```
  - ```You need to send it with your Token Api in order to process this action!```
 
-Delete Category
+Delete Product
  - ```You need to send it with your Token Api in order to process this action!```
 ---
