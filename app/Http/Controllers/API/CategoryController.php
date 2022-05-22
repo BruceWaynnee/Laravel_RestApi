@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\Controller;
-use App\Models\Api\Category;
+
 use Exception;
-use Illuminate\Database\QueryException;
+use App\Models\Api\Category;
+use App\Models\Util\ModuleQueryMethods\ModuleQueries;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 
 class CategoryController extends Controller
 {
@@ -18,7 +20,7 @@ class CategoryController extends Controller
     public function index()
     {
         // get all category records
-        $categories = Category::getCategories();
+        $categories = ModuleQueries::getAllModelRecords('category', 'API');
         if( !$categories->data ){
             return response()->json($categories->message , 404);
         }
@@ -70,7 +72,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         // get category record
-        $category = Category::getCategory($id);
+        $category = ModuleQueries::findModelRecordById('category', $id, 'API');
         if( !$category->data ){
             return response()->json($category->message, 404);
         }
@@ -87,7 +89,7 @@ class CategoryController extends Controller
      */
     public function search($field, $value){
         // search category by given field and value
-        $category = Category::scopeLike($field, $value);
+        $category = ModuleQueries::findModelRecordByScopeLike('category', $field, $value, 'API');
         if( !$category->data ){
             return response()->json($category->message, 404);
         }
@@ -105,7 +107,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         // get category record
-        $category = Category::getCategory($id);
+        $category = ModuleQueries::findModelRecordById('category', $id, 'API');
         if( !$category->data ){
             return response()->json($category->message, 404);
         }
@@ -142,7 +144,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         // get category record
-        $category = Category::getCategory($id);
+        $category = ModuleQueries::findModelRecordById('category', $id, 'API');
         if( !$category->data ){
             return response()->json($category->message, 404);
         }
