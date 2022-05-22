@@ -5,9 +5,10 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Api\Size;
 use App\Models\Util\ModuleQueryMethods\ModuleQueries;
-use Illuminate\Database\QueryException;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 
 class SizeController extends Controller
 {
@@ -18,7 +19,7 @@ class SizeController extends Controller
     public function index()
     {
         // get size records
-        $sizes = Size::getSizes();
+        $sizes = ModuleQueries::getAllModelRecords('size', 'API');
         if( !$sizes->data ){
             return response()->json($sizes->message, 404);
         }
@@ -72,7 +73,7 @@ class SizeController extends Controller
     public function show($id)
     {
         // get size record
-        $size = Size::getSize($id);
+        $size = ModuleQueries::findModelRecordById('size', $id, 'API');
         if( !$size->data ){
             return response()->json($size->message, 404);
         }
@@ -90,7 +91,7 @@ class SizeController extends Controller
     public function search($field, $value)
     {
         // search product by given field and value
-        $size = Size::scopeLike($field, $value);
+        $size = ModuleQueries::findModelRecordByScopeLike('size', $field, $value, 'API');
         if( !$size->data ) {
             return response()->json($size->message, 404);
         }
@@ -108,7 +109,7 @@ class SizeController extends Controller
     public function update(Request $request, $id)
     {
         // get size record
-        $size = Size::getSize($id);
+        $size = ModuleQueries::findModelRecordById('size', $id, 'API');
         if( !$size->data ){
             return response()->json($size->message, 404);
         }
@@ -146,7 +147,7 @@ class SizeController extends Controller
     public function destroy($id)
     {
         // get size record
-        $size = Size::getSize($id);
+        $size = ModuleQueries::findModelRecordById('size', $id, 'API');
         if( !$size->data ){
             return response()->json($size->message, 404);
         }
