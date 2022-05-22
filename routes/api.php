@@ -52,5 +52,17 @@ Route::group([
         Route::delete('/{id}', 'CategoryController@destroy')->name('category-delete')->middleware('auth:sanctum');
     });
 
+    // size api routes
+    Route::group([
+        'prefix' => 'sizes',
+    ], function(){
+        Route::get('/', 'SizeController@index')->name('size-list');
+        Route::post('/', 'SizeController@store')->name('size-create')->middleware('auth:sanctum');
+        Route::get('/{id}', 'SizeController@show')->name('size-show');
+        Route::get('/search/{field}/{value}', 'SizeController@search')->name('size-search');
+        Route::patch('/{id}/edit', 'SizeController@update')->name('size-update')->middleware('auth:sanctum');
+        Route::delete('/{id}', 'SizeController@destroy')->name('size-delete')->middleware('auth:sanctum');
+    });
+
     // ... api routes
 });

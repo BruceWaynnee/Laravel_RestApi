@@ -103,3 +103,30 @@ Edit Product
 Delete Product
  - ```You need to send it with your Token Api in order to process this action!```
 ---
+
+Size API
+| To          | Method       | URL  								                          |
+| ----------- |:------------:| --------------------------------------------------------------:|
+| List Sizes  | ```GET```    | http://localhost:8000/api/sizes   		                      |
+| Add size    | ```POST```   | http://localhost:8000/api/sizes   		                      |
+| Show size   | ```GET```    | http://localhost:8000/api/sizes/1                              |
+| Search size | ```GET```    | http://localhost:8000/api/search/{field}/{value} ex name/small |
+| Edit size   | ```PATCH```  | http://localhost:8000/api/sizes/1/edit                         |
+| Delete size | ```DELETE``` | http://localhost:8000/api/sizes/1                              |
+|             |              |                                                                |
+###### Mentadory Request Variable Name To:
+Add Size
+ - ```name```
+ - ```slug```
+ - ```description```
+ - ```You need to send it with your Token Api in order to process this action!```
+
+Edit Size
+ - ```name```
+ - ```slug```
+ - ```description```
+ - ```You need to send it with your Token Api in order to process this action!```
+
+Delete Size
+ - ```You need to send it with your Token Api in order to process this action!```
+---
