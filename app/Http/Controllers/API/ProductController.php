@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\Controller;
+
 use App\Models\Api\Product;
-use Illuminate\Database\QueryException;
+use App\Models\Util\ModuleQueryMethods\ModuleQueries;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 
 class ProductController extends Controller
 {
@@ -17,7 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         // get product records from database.
-        $products = Product::getProducts();
+        $products = ModuleQueries::getAllModelRecords('product', 'API');
         if( !$products->data ){
             return response()->json($products->message, 404);
         }
@@ -41,7 +43,7 @@ class ProductController extends Controller
         ]);
 
         // get category record
-        $category = Product::getCategory($request['category_id']);
+        $category = ModuleQueries::findModelRecordById('category', $request['category_id'], 'API');
         if( !$category->data ){
             return response()->json($category->message, 404);
         }
@@ -83,7 +85,7 @@ class ProductController extends Controller
     public function show($id)
     {
         // get product record
-        $product = Product::getProduct($id);
+        $product = ModuleQueries::findModelRecordById('product', $id, 'API');
         if( !$product->data ){
             return response()->json($product->message, 404);
         }
@@ -101,7 +103,7 @@ class ProductController extends Controller
     public function search($field, $value)
     {
         // search product by given field and value
-        $product = Product::scopeLike($field, $value);
+        $product = ModuleQueries::findModelRecordByScopeLike('product', $field, $value, 'API');
         if( !$product->data ) {
             return response()->json($product->message, 404);
         }
@@ -119,18 +121,18 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         // get product record
-        $product = Product::getProduct($id);
+        $product = ModuleQueries::findModelRecordById('product', $id, 'API');
         if( !$product->data ){
             return response()->json($product->message, 404);
         }
         $product = $product->data;
 
         // get category id
-        $category = Product::getCategory($request['category_id']);
+        $category = ModuleQueries::findModelRecordById('category', $request['category_id'], 'API');
         if( !$category->data ){
             return response()->json($category->message, 404);
         }
-        $category = $category->id;
+        $category = $category->data;
         
         // update product record
         try {
@@ -165,7 +167,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         // get product record
-        $product = Product::getProduct($id);
+        $product = ModuleQueries::findModelRecordById('product', $id, 'API');
         if( !$product->data ){
             return response()->json($product->message, 404);
         }
