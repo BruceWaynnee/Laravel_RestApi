@@ -64,5 +64,17 @@ Route::group([
         Route::delete('/{id}', 'SizeController@destroy')->name('size-delete')->middleware('auth:sanctum');
     });
 
+    // color api routes
+    Route::group([
+        'prefix' => 'colors',
+    ], function(){
+        Route::get('/', 'ColorController@index')->name('color-list');
+        Route::post('/', 'ColorController@store')->name('color-create')->middleware('auth:sanctum');
+        Route::get('/{id}', 'ColorController@show')->name('color-show');
+        Route::get('/search/{field}/{value}', 'ColorController@search')->name('color-search');
+        Route::patch('/{id}/edit', 'ColorController@update')->name('color-update')->middleware('auth:sanctum');
+        Route::delete('/{id}', 'ColorController@destroy')->name('color-delete')->middleware('auth:sanctum');
+    });
+
     // ... api routes
 });

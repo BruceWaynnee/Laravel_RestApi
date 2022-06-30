@@ -33,7 +33,7 @@ User API
 | Login           | ```POST```    | http://localhost:8000/api/users/login     |
 | logout          | ```POST```    | http://localhost:8000/api/users/logout    |
 |                 |               |                                           |
-###### Mentadory Request Variable Name To:
+###### Mandatory Request Variable Name To:
 Register User
  - ```name```
  - ```email```
@@ -58,7 +58,7 @@ Category API
 | Edit Category   | ```PATCH```   | http://localhost:8000/api/categories/1/edit                       |
 | Delete Category | ```DELETE```  | http://localhost:8000/api/categories/1                            |
 |                 |               |                                                                   |
-###### Mentadory Request Variable Name To:
+###### Mandatory Request Variable Name To:
 Add Category
  - ```name```
  - ```description```
@@ -83,7 +83,7 @@ Product API
 | Edit Product    | ```PATCH```   | http://localhost:8000/api/products/1/edit                         |
 | Delete Product  | ```DELETE```  | http://localhost:8000/api/products/1                              |
 |                 |               |                                                                   |
-###### Mentadory Request Variable Name To:
+###### Mandatory Request Variable Name To:
 Add Product
  - ```name```
  - ```cost```
@@ -107,14 +107,41 @@ Delete Product
 Size API
 | To          | Method       | URL  								                          |
 | ----------- |:------------:| --------------------------------------------------------------:|
-| List Sizes  | ```GET```    | http://localhost:8000/api/sizes   		                      |
+| List sizes  | ```GET```    | http://localhost:8000/api/sizes   		                      |
 | Add size    | ```POST```   | http://localhost:8000/api/sizes   		                      |
 | Show size   | ```GET```    | http://localhost:8000/api/sizes/1                              |
 | Search size | ```GET```    | http://localhost:8000/api/search/{field}/{value} ex name/small |
 | Edit size   | ```PATCH```  | http://localhost:8000/api/sizes/1/edit                         |
 | Delete size | ```DELETE``` | http://localhost:8000/api/sizes/1                              |
 |             |              |                                                                |
-###### Mentadory Request Variable Name To:
+###### Mandatory Request Variable Name To:
+Add Size
+ - ```name```
+ - ```slug```
+ - ```description```
+ - ```You need to send it with your Token Api in order to process this action!```
+
+Edit Size
+ - ```name```
+ - ```slug```
+ - ```description```
+ - ```You need to send it with your Token Api in order to process this action!```
+
+Delete Size
+ - ```You need to send it with your Token Api in order to process this action!```
+---
+
+Color API
+| To           | Method       | URL  								                           |
+| ------------ |:------------:| --------------------------------------------------------------:|
+| List Colors  | ```GET```    | http://localhost:8000/api/colors   		                       |
+| Add color    | ```POST```   | http://localhost:8000/api/colors   		                       |
+| Show color   | ```GET```    | http://localhost:8000/api/colors/1                             |
+| Search color | ```GET```    | http://localhost:8000/api/search/{field}/{value} ex name/black |
+| Edit color   | ```PATCH```  | http://localhost:8000/api/colors/1/edit                        |
+| Delete color | ```DELETE``` | http://localhost:8000/api/colors/1                             |
+|              |              |                                                                |
+###### Mandatory Request Variable Name To:
 Add Size
  - ```name```
  - ```slug```

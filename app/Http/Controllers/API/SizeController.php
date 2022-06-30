@@ -90,7 +90,7 @@ class SizeController extends Controller
      */
     public function search($field, $value)
     {
-        // search product by given field and value
+        // search size by given field and value
         $size = ModuleQueries::findModelRecordByScopeLike('size', $field, $value, 'API');
         if( !$size->data ) {
             return response()->json($size->message, 404);
