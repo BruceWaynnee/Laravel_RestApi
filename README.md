@@ -24,7 +24,7 @@ Laravel 8 RESTful_API with Sanctum API authentication.
 ### 
 
 # Testing The API
-#### Date( Saturaday, April/23rd/2022 )
+#### Date( Saturaday, October/29th/2022 )
 
 User API
 | To              | Method        | URL  						   	          |
@@ -155,5 +155,32 @@ Edit Size
  - ```You need to send it with your Token Api in order to process this action!```
 
 Delete Size
+ - ```You need to send it with your Token Api in order to process this action!```
+---
+
+Brand API
+| To           | Method       | URL  								                           |
+| ------------ |:------------:| --------------------------------------------------------------:|
+| List Brands  | ```GET```    | http://localhost:8000/api/brands                               |
+| Add brand    | ```POST```   | http://localhost:8000/api/brands                               |
+| Show brand   | ```GET```    | http://localhost:8000/api/brands/1                             |
+| Search brand | ```GET```    | http://localhost:8000/api/search/{field}/{value} ex name/black |
+| Edit brand   | ```PATCH```  | http://localhost:8000/api/brands/1/edit                        |
+| Delete brand | ```DELETE``` | http://localhost:8000/api/brands/1                             |
+|              |              |                                                                |
+###### Mandatory Request Variable Name To:
+Add Brand
+ - ```name```
+ - ```slug```
+ - ```description```
+ - ```You need to send it with your Token Api in order to process this action!```
+
+Edit Brand
+ - ```name```
+ - ```slug```
+ - ```description```
+ - ```You need to send it with your Token Api in order to process this action!```
+
+Delete Brand
  - ```You need to send it with your Token Api in order to process this action!```
 ---

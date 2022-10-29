@@ -76,5 +76,17 @@ Route::group([
         Route::delete('/{id}', 'ColorController@destroy')->name('color-delete')->middleware('auth:sanctum');
     });
 
+    // brand api routes
+    Route::group([
+        'prefix' => 'brands'
+    ], function(){
+        Route::get('/', 'BrandController@index')->name('brand-list');
+        Route::post('/', 'BrandController@store')->name('brand-create')->middleware('auth:sanctum');
+        Route::get('/{id}', 'BrandController@show')->name('brand-show');
+        Route::get('/search/{field}/{value}', 'BrandController@search')->name('brand-search');
+        Route::patch('/{id}/edit', 'BrandController@update')->name('brand-update')->middleware('auth:sanctum');
+        Route::delete('/{id}', 'BrandController@destroy')->name('brand-delete')->middleware('auth:sanctum');
+    });
+
     // ... api routes
 });
