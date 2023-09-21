@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Models\Api;
+use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Color extends Model
 {
@@ -31,11 +31,4 @@ class Color extends Model
         'description',
 
     ];
-
-    /**
-     * #####################
-     *     Relationships
-     * #####################
-     */
-    
 }

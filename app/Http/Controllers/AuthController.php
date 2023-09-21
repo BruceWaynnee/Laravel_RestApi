@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Models\User;
+
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +25,7 @@ class AuthController extends Controller
             'password' => 'required|string|confirmed',
         ]);
 
-        // create record
+        // create data
         try {
             DB::beginTransaction();
 
@@ -46,9 +47,9 @@ class AuthController extends Controller
                 'token'   => $token,
                 'message' => 'Successfully registered new user with access token',
             ];
-
-        } catch( Exception $ex ) {
+        } catch ( Exception $ex ) {
             DB::rollBack();
+
             $response = [
                 'code'           => 409,
                 'status'         => 'Error',
@@ -57,8 +58,8 @@ class AuthController extends Controller
                 'detail message' => $ex->getMessage(),
             ];
         }
-
         DB::commit();
+
         return response($response, $response['code']);
     }
 
@@ -117,5 +118,4 @@ class AuthController extends Controller
             'message' => 'The user is logged out',
         ], 200);
     }
-
 }

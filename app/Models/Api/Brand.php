@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Models\Api;
+use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Brand extends Model
 {
     use HasFactory;
 
     /**
-     * Table name
+     * Table name.
      * @var String
      */
     protected $table = 'brands';
@@ -29,6 +29,6 @@ class Brand extends Model
         'name',
         'slug',
         'description',
-
+        
     ];
 }

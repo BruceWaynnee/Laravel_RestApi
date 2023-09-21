@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Models\Api;
-
 use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Size extends Model
@@ -31,11 +31,4 @@ class Size extends Model
         'description',
 
     ];
-
-    /**
-     * #####################
-     *     Relationships
-     * #####################
-     */
-        
 }

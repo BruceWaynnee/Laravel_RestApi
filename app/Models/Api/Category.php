@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Models\Api;
-
 use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
@@ -16,7 +16,7 @@ class Category extends Model
     protected $table = 'categories';
 
     /**
-     * Primary key
+     * Primary key.
      * @var Integer
      */
     protected $primaryKey = 'id';
@@ -32,13 +32,13 @@ class Category extends Model
     ];
 
     /**
-     * ########################
-     *     Helper Functions
-     * ########################
+     * #####################
+     *     Relationships
+     * #####################
      */
         /**
-         * One category to many product.
-         * @return App\Api\Model\Product
+         * One category to many product relationship.
+         * @return App\Models\Api\Product
          */
         public function products(){
             return $this->hasMany(
@@ -46,14 +46,4 @@ class Category extends Model
                 'category_id',
             );
         }
-
-    /**
-     * ######################
-     *      Relationship
-     * ######################
-     */
-        /**
-         * 
-         */
-
 }
