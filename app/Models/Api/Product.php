@@ -12,13 +12,13 @@ class Product extends Model
     use HasFactory;
 
     /**
-     * Table Name
+     * Table Name.
      * @var String
      */
     protected $table = 'products';
 
     /**
-     * The attributes that are mass assignable
+     * The attributes that are mass assignable.
      * @var Array
      */
     protected $fillable = [

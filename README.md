@@ -107,12 +107,12 @@ Delete Product
 Size API
 | To          | Method       | URL  								                          |
 | ----------- |:------------:| --------------------------------------------------------------:|
-| List sizes  | ```GET```    | http://localhost:8000/api/sizes   		                      |
-| Add size    | ```POST```   | http://localhost:8000/api/sizes   		                      |
-| Show size   | ```GET```    | http://localhost:8000/api/sizes/1                              |
-| Search size | ```GET```    | http://localhost:8000/api/search/{field}/{value} ex name/small |
-| Edit size   | ```PATCH```  | http://localhost:8000/api/sizes/1/edit                         |
-| Delete size | ```DELETE``` | http://localhost:8000/api/sizes/1                              |
+| List Sizes  | ```GET```    | http://localhost:8000/api/sizes   		                      |
+| Add Size    | ```POST```   | http://localhost:8000/api/sizes   		                      |
+| Show Size   | ```GET```    | http://localhost:8000/api/sizes/1                              |
+| Search Size | ```GET```    | http://localhost:8000/api/search/{field}/{value} ex name/small |
+| Edit Size   | ```PATCH```  | http://localhost:8000/api/sizes/1/edit                         |
+| Delete Size | ```DELETE``` | http://localhost:8000/api/sizes/1                              |
 |             |              |                                                                |
 ###### Mandatory Request Variable Name To:
 Add Size
@@ -135,11 +135,11 @@ Color API
 | To           | Method       | URL  								                           |
 | ------------ |:------------:| --------------------------------------------------------------:|
 | List Colors  | ```GET```    | http://localhost:8000/api/colors   		                       |
-| Add color    | ```POST```   | http://localhost:8000/api/colors   		                       |
-| Show color   | ```GET```    | http://localhost:8000/api/colors/1                             |
-| Search color | ```GET```    | http://localhost:8000/api/search/{field}/{value} ex name/black |
-| Edit color   | ```PATCH```  | http://localhost:8000/api/colors/1/edit                        |
-| Delete color | ```DELETE``` | http://localhost:8000/api/colors/1                             |
+| Add Color    | ```POST```   | http://localhost:8000/api/colors   		                       |
+| Show Color   | ```GET```    | http://localhost:8000/api/colors/1                             |
+| Search Color | ```GET```    | http://localhost:8000/api/search/{field}/{value} ex name/black |
+| Edit Color   | ```PATCH```  | http://localhost:8000/api/colors/1/edit                        |
+| Delete Color | ```DELETE``` | http://localhost:8000/api/colors/1                             |
 |              |              |                                                                |
 ###### Mandatory Request Variable Name To:
 Add Size
@@ -162,11 +162,11 @@ Brand API
 | To           | Method       | URL  								                           |
 | ------------ |:------------:| --------------------------------------------------------------:|
 | List Brands  | ```GET```    | http://localhost:8000/api/brands                               |
-| Add brand    | ```POST```   | http://localhost:8000/api/brands                               |
-| Show brand   | ```GET```    | http://localhost:8000/api/brands/1                             |
-| Search brand | ```GET```    | http://localhost:8000/api/search/{field}/{value} ex name/black |
-| Edit brand   | ```PATCH```  | http://localhost:8000/api/brands/1/edit                        |
-| Delete brand | ```DELETE``` | http://localhost:8000/api/brands/1                             |
+| Add Brand    | ```POST```   | http://localhost:8000/api/brands                               |
+| Show Brand   | ```GET```    | http://localhost:8000/api/brands/1                             |
+| Search Brand | ```GET```    | http://localhost:8000/api/search/{field}/{value} ex name/black |
+| Edit Brand   | ```PATCH```  | http://localhost:8000/api/brands/1/edit                        |
+| Delete Brand | ```DELETE``` | http://localhost:8000/api/brands/1                             |
 |              |              |                                                                |
 ###### Mandatory Request Variable Name To:
 Add Brand
