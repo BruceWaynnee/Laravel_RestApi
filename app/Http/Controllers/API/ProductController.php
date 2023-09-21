@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Api\Product;
 use App\Models\Util\ModuleQueryMethods\ModuleQueries;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
@@ -18,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // get product records from database.
+        // get records
         $products = ModuleQueries::getAllModelRecords('product', 'API');
         if( !$products->data ){
             return response()->json($products->message, 404);
@@ -30,7 +31,7 @@ class ProductController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -38,42 +39,49 @@ class ProductController extends Controller
         // validate all mandatory request data
         $request->validate([
             'name'              => 'required|max:255',
-            'cost'              => 'required|numeric',
             'country_of_origin' => 'required|max:50',
         ]);
 
-        // get category record
-        $category = ModuleQueries::findModelRecordById('category', $request['category_id'], 'API');
-        if( !$category->data ){
-            return response()->json($category->message, 404);
+        // get mandatory module records
+        $mandatoryModules = Product::requestsValidation($request);
+        if( !$mandatoryModules->data ){
+            return response()->json($mandatoryModules->message, 404);
         }
-        $category = $category->data;
+        $brand           = $mandatoryModules->brand;
+        $category        = $mandatoryModules->category;
+        $name            = $mandatoryModules->name;
+        $barcode         = $mandatoryModules->barcode;
+        $countryOfOrigin = $mandatoryModules->countryOfOrigin;
 
-        // create product record
+        // create data
         try {
             DB::beginTransaction();
-            
+
             $product = new Product([
-                'name'              => $request['name'],
-                'barcode'           => $request['barcode'],
-                'cost'              => $request['cost'],
+                'name'              => $name,
+                'barcode'           => $barcode,
+                'cost'              => 0.00,
                 'category_id'       => $category->id,
-                'country_of_origin' => $request['country_of_origin'],
+                'brand_id'          => $brand->id,
+                'country_of_origin' => $countryOfOrigin,
             ]);
             $product->save();
-
-        } catch( QueryException $ex ) {
+        } catch ( QueryException $ex ) {
             DB::rollBack();
-            $errorCode = $ex->errorInfo[1];
-            if( $errorCode == '1062' ) {
-                $message = 'Duplicated product name entry, please choose another name and try again!';
-            } else {
-                $message = 'Duplicated product barcode entry, please choose another code and try again!';
-            }
-            return response()->json($message, 409);
+
+            $message = $ex->errorInfo[1] == 1062 ? 
+                'Duplicated product name entry, please choose another name and try again!' : 
+                'Problem occured while trying to create new product record and store into database!';
+
+            $devMessage = $ex->getMessage();
+
+            return response()->json([
+                'message'    => $message,
+                'devMessage' => $devMessage,
+            ], 409);
         }
-        
         DB::commit();
+
         return $product;
     }
 
@@ -114,48 +122,40 @@ class ProductController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        // get product record
-        $product = ModuleQueries::findModelRecordById('product', $id, 'API');
-        if( !$product->data ){
-            return response()->json($product->message, 404);
+        // get mandatory modules records
+        $mandatoryModules = Product::validateExistingModulesOfCorrespondingProduct( $request, $id );
+        if( !$mandatoryModules->data ){
+            return response()->json( $mandatoryModules->message, 404 );
         }
-        $product = $product->data;
+        $product = $mandatoryModules->product;
 
-        // get category id
-        $category = ModuleQueries::findModelRecordById('category', $request['category_id'], 'API');
-        if( !$category->data ){
-            return response()->json($category->message, 404);
-        }
-        $category = $category->data;
-        
-        // update product record
+        // update data
         try {
             DB::beginTransaction();
-            
-            // update category id
-            $product->category_id = $category->id;
-            // update product record
-            $product->update( $request->all() );
 
+            $product->update( $request->all() );
         } catch( QueryException $ex ) {
             DB::rollBack();
-            return $ex->getMessage();
-            $errorCode = $ex->errorInfo[1];
-            if( $errorCode == '1062' ) {
-                $message = 'Duplicated product name entry, please choose another name and try again!';
-            } else {
-                $message = 'Duplicated product barcode entry, please choose another code and try again!';
-            }
-            return response()->json($message, 409);
+
+            $message = $ex->errorInfo[1] == 1062 ? 
+                'Duplicated product name entry, please choose another name and try again!' : 
+                'Problem occured while trying to update product record into database';
+
+            $devMessage = $ex->getMessage();
+
+            return response()->json([
+                'message'    => $message,
+                'devMessage' => $devMessage,
+            ], 409);
         }
-        
         DB::commit();
+
         return $product;
     }
 
@@ -166,16 +166,27 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        // get product record
+        // get record
         $product = ModuleQueries::findModelRecordById('product', $id, 'API');
         if( !$product->data ){
             return response()->json($product->message, 404);
         }
         $product = $product->data;
 
-        // delete product record
-        $product->delete();
+        // delete data
+        try {
+            DB::beginTransaction();
 
-        return $product; 
+            $product->delete();
+        } catch ( Exception $ex ) {
+            DB::rollBack();
+
+            return response()->json([
+                'message'    => 'Problem occured while trying to delete product record from database!',
+                'devMessage' => $ex->getMessage(),
+            ], 404);
+        }
+
+        return $product;
     }
 }

@@ -86,17 +86,17 @@ Product API
 ###### Mandatory Request Variable Name To:
 Add Product
  - ```name```
- - ```cost```
  - ```barcode```
  - ```category_id```
+ - ```brand_id```
  - ```country_of_origin```
  - ```You need to send it with your Token Api in order to process this action!```
 
 Edit Product
  - ```name```
- - ```cost```
  - ```barcode```
  - ```category_id```
+ - ```brand_id```
  - ```country_of_origin```
  - ```You need to send it with your Token Api in order to process this action!```
 
