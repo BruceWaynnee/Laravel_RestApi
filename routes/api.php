@@ -28,6 +28,9 @@ Route::group([
     'namespace' => 'API',
 ], function(){
 
+    // test connection route
+    Route::get('/test-connection', function(){ return 'You are succesfully talk to our API :)'; });
+
     // product api routes
     Route::group([
         'prefix' => 'products',
