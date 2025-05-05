@@ -26,6 +26,12 @@ Laravel 8 RESTful_API with Sanctum API authentication.
 # Testing The API
 #### Date( Saturaday, October/29th/2022 )
 
+Test The Connection
+| To              | Method        | URL
+| --------------- |:-------------:| -----------------------------------------:|
+| Test Connection | ```GET```    | http://localhost:8000/api/test-connection  |
+---
+
 User API
 | To              | Method        | URL  						   	          |
 | --------------- |:-------------:| -----------------------------------------:|
